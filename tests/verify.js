@@ -2,19 +2,19 @@ import config from './config.example.json';
 import Nexmo from '../src/index.js';
 import chai from 'chai';
 import nock from 'nock';
-const assert = chai.assert;
+const expect = chai.expect;
 import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 
 describe('Verify', () => {
   it('returns an error if the credentials are not set', () => {
     const n = new Nexmo();
-    return assert.isRejected(n.verify(), 'You need to set credentials');
+    return expect(n.verify()).to.be.rejectedWith('You need to set credentials');
   });
 
   it('returns an error if the number is not passed as parameter', () => {
     const n = new Nexmo(config);
-    return assert.isRejected(n.verify(), 'You need to pass a number');
+    return expect(n.verify()).to.be.rejectedWith('You need to pass a number');
   });
 
   it('when the token is expired ask for a new one', () => {
@@ -65,11 +65,11 @@ describe('Verify', () => {
         'x-nexmo-response-signature': 'df3000e7135f0ae477c2031f5fb7cf05',
       });
 
-    assert.isFulfilled(n.verify({
+    expect(n.verify({
       number: 44123456789,
-    }));
-    assert.eventually.equal(n.verify({
+    })).to.be.fulfilled;
+    expect(n.verify({
       number: 44123456789,
-    }), 'verified');
+    })).to.eventually.equal('verified');
   });
 });
