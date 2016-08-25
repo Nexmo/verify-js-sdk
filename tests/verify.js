@@ -65,10 +65,7 @@ describe('Verify', () => {
         'x-nexmo-response-signature': 'df3000e7135f0ae477c2031f5fb7cf05',
       });
 
-    expect(n.verify({
-      number: 44123456789,
-    })).to.be.fulfilled;
-    expect(n.verify({
+    return expect(n.verify({
       number: 44123456789,
     })).to.eventually.equal('verified');
   });
