@@ -13,7 +13,7 @@ In order to implement the Verify SDK for JavaScript:
 
 ## License
 
-Copyright (c) 2015 Nexmo, Inc.
+Copyright (c) 2018 Nexmo, Inc.
 All rights reserved.
 Licensed only under the Nexmo Verify SDK License Agreement (the "License") located at
 
